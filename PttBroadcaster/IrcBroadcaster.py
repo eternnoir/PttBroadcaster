@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import IrcBot
 
+
 class IrcBroadcaster():
 
     def __init__(self, board, delayTime, channel, nickname, server, port=6667):
