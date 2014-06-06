@@ -19,8 +19,8 @@ class Bot(irc.bot.SingleServerIRCBot):
     def on_welcome(self, c, e):
         c.join(self.channel)
 
-    def say(self, c, msg):
-        c.privmsg(self.channel, msg)
+    def say(self, msg):
+        self.connection.privmsg(self.channel, msg)
 
     def sayTo(self, c, user, msg):
         tomsg = user+': '+msg

@@ -1,2 +1,3 @@
 # -*- coding: utf-8 -*-
-__author__ = 'frankwang'
+__author__ = 'eternnoir'
+__version__ = '0.1'
