@@ -40,6 +40,6 @@ class IrcBroadcaster():
         for a in articals:
             url = pttDomain+a.url
             shortUrl = self.googl.genShortUrl(url)
-            self.ircbot.say(a.title + '        < '
-                            + shortUrl + ' >')
+            self.ircbot.say(a.title + '        '
+                            + shortUrl +' ' )
             sleep(1)
