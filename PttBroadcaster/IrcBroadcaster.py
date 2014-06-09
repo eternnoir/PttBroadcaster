@@ -3,8 +3,11 @@ import IrcBot
 from threading import Thread
 from time import sleep
 from PyrserPTT import PyserPtt
+from . import googl
+
 
 pttDomain = 'http://www.ptt.cc'
+
 
 class IrcBroadcaster():
 
@@ -13,7 +16,8 @@ class IrcBroadcaster():
         self.board = board
         self.delayTime = delayTime
         self.channel = channel
-        self.pttPyser = PyserPtt.PyserPtt(board,5)
+        self.pttPyser = PyserPtt.PyserPtt(board, 5)
+        self.googl = googl.Googl()
 
     def start(self):
         self.botTread = Thread(target=self.ircbot.start)
@@ -25,17 +29,17 @@ class IrcBroadcaster():
         self.postThread.daemon = True
         self.postThread.start()
 
-
     def doBroadcaster(self):
         while True:
-            self.postNewArtical();
-            sleep(self.delayTime);
+            self.postNewArtical()
+            sleep(self.delayTime)
 
     def postNewArtical(self):
         print 'get New Artical'
         articals = self.pttPyser.getNewArticals()
         for a in articals:
             url = pttDomain+a.url
+            shortUrl = self.googl.genShortUrl(url)
             self.ircbot.say(a.title + '        < '
-                            + url + ' >')
+                            + shortUrl + ' >')
             sleep(1)
